@@ -634,10 +634,8 @@ function renderProjectSidebar(){
 }
 
 function populateGlobalSelect(){
-  const sel = document.getElementById('globalProjectSelect');
-  sel.innerHTML = '<option value="">— tutti i progetti —</option>' +
-    spaces.map(s=>`<option value="${s.id}" ${s.id===activeSpaceId?'selected':''}>${s.name}</option>`).join('');
-}
+const target = activeSpaceId || (spaces[0]?.id);
+  if(target) loadSpace(target);
 
 function onProjectChange(){
   const v = document.getElementById('globalProjectSelect').value;
